@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Slideshow jQuery</title>
+
+    <!-- CDN jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        .slideshow {
+            width: 400px;
+            margin: auto;
+        }
+
+        img {
+            width: 100%;
+            display: none;
+            border-radius: 8px;
+        }
+
+        .tombol {
+            margin-top: 15px;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Slideshow Gambar Sederhana</h2>
+
+    <div class="slideshow">
+        <img src="https://picsum.photos/id/1015/400/250" class="slide">
+        <img src="https://picsum.photos/id/1016/400/250" class="slide">
+        <img src="https://picsum.photos/id/1018/400/250" class="slide">
+    </div>
+
+    <div class="tombol">
+        <button id="prev">Prev</button>
+        <button id="next">Next</button>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            let index = 0;
+            let slides = $(".slide");
+            let totalSlide = slides.length;
+
+            // tampilkan gambar pertama
+            slides.eq(index).fadeIn();
+
+            $("#next").click(function () {
+                slides.eq(index).fadeOut(function () {
+                    index++;
+                    if (index >= totalSlide) {
+                        index = 0;
+                    }
+                    slides.eq(index).fadeIn();
+                });
+            });
+
+            $("#prev").click(function () {
+                slides.eq(index).fadeOut(function () {
+                    index--;
+                    if (index < 0) {
+                        index = totalSlide - 1;
+                    }
+                    slides.eq(index).fadeIn();
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>
